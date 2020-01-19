@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+:root {
+  --theme: #fff3ee;
+  --primary: #ff8b8c;
+  --primary-shadow: #ED6F70;
+  --white: #fff;
+  --gray: #f6f6f6;
+  --gray2: #d9d9d9;
+  --gray3: #c3c1c1;
+  --yellow: #ffbb72;
+  --yellow2: #FFC167;
+  --blue: #3D9DF9;
+  --blue2: #290A80;
+  --red: #FC5C88;
+
+  --bg-strong: #000;
+  --bg-blur: rgba(0, 0, 0, 0.15);
+  --bg-common: var(--gray);
+  --bt-store: var(--theme);
+  --bg-primary: var(--primary);
+  --bg-gray: var(--gray);
+  --bg-gray2: #e8e8e8;
+  --bg-modal: #04040F;
+  --bg-clock: #1F2E77;
+
+  --color-strong: var(--primary);
+  --color-strong2: #FF3B30;
+  --color-common: #4a4a4a;
+  --color-primary: var(--white);
+  --color-gray: #9b9b9b;
+  --color-gray2: #707070;
+  --color-gray3: #4a4a4a;
+
+  --color-price: var(--primary);
+  --color-original-price: var(--color-gray);
+
+  --z-index-layer-1: 1;
+  --z-index-flow-clickable: 10;
+  --z-index-notification: 400;
+  --z-index-aside: 600;
+  --z-index-modal: 800;
+
+
+  --safe-area-inset-top: constant(safe-area-inset-top);
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+
+  --sticky-header-top: 0;  /* would be dynamically changed according to device */
+  --sticky-header-top: constant(safe-area-inset-top);
+  --sticky-header-top: env(safe-area-inset-top);
+
+  --fixed-header-top: 0;  /* would be dynamically changed according to device */
+  --fixed-header-top: constant(safe-area-inset-top);
+  --fixed-header-top: env(safe-area-inset-top);
+
+  --fixed-footer-bottom: 0;
+  --fixed-footer-bottom: constant(safe-area-inset-bottom);
+  --fixed-footer-bottom: env(safe-area-inset-bottom);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-size: 15px; /*no*/
+  font-weight: 500;
+  line-height: 1.6em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+body {
+  background: var(--bg-common);
+  color: var(--color-common);
+  overscroll-behavior-y: none;
+}
+
+html {
+  height: 100%;
+
+  /* if browser not supported vw, then fix font-size */
+  font-size: 100px; /*no*/
+
+  /* if window inner width = 375px, font-size=100px (100px = 375px * 0.26666) */
+  /* if window inner width = 560px, font-size=150px (150px = 560px * 0.26666) */
+  /* if window inner width = 750px, font-size=200px (200px = 750px * 0.26666) */
+  font-size: 26.66666666vw;
+
+  scroll-behavior: smooth;
+}
+
+/* if the page bigger than 560px, then fixe font-size to 150px */
+@media (min-width: 560px) {
+  html {
+    font-size: 150px; /*no*/
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  body {
+    max-width: 560px; /*no*/
+    margin: 0 auto;
   }
 }

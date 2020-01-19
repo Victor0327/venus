@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import FunkGo from './npm/FunkGo'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import LoginContainer from './containers/Login/LoginContainer'
 
-export default App;
+import './App.css'
+import pkg from '../package.json'
+
+const corePages = [
+  {
+    name: 'Login',
+    path: '/login',
+    component: LoginContainer
+  }
+]
+
+const go = new FunkGo({
+  name: pkg.name,
+  version: pkg.version,
+  router: {
+    routes: [
+      ...corePages
+    ],
+    globalRoutes: []
+  },
+  plugins: {
+    http: {
+      timeout: process.env.REACT_APP_API_TIMEOUT,
+      baseURL: process.env.REACT_APP_API_ENDPOINT,
+      serverBaseURL: process.env.REACT_APP_API_SSR_ENDPOINT
+    },
+  }
+})
+
+
+export default go.createApp()
